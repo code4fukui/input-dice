@@ -20,7 +20,8 @@ export class InputDice extends HTMLElement {
     this.appendChild(renderer.domElement);
 
     const img = new Image();
-    img.src = "./nums.png"; // 1〜6が横に並んだ画像
+    //img.src = "./nums.png"; // 1〜6が横に並んだ画像
+    img.src = "https://code4fukui.github.io/input-dice/nums.png";
     const texture = new THREE.Texture(img);
     texture.needsUpdate = true;
 
