@@ -21,6 +21,7 @@ export class InputDice extends HTMLElement {
 
     const img = new Image();
     //img.src = "./nums.png"; // 1〜6が横に並んだ画像
+    img.crossOrigin = "anonymous";
     img.src = "https://code4fukui.github.io/input-dice/nums.png";
     const texture = new THREE.Texture(img);
     texture.needsUpdate = true;
