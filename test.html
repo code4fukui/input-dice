@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>Three.js Cube with 1-6 Texture</title>
+<style>
+</style>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
+<script type="module">
+import * as THREE from "https://code4fukui.github.io/three.js/build/three.module.js";
+import { waitImageLoad } from "https://js.sabae.cc/waitImageLoad.js";
+import { rnd } from "https://js.sabae.cc/rnd.js";
+
+const roll = rnd(6) + 1;
+
+const cw = 300;
+const ch = 300;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(70, cw / ch, 0.1, 1000);
+camera.position.z = 1.6;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+//renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setSize(cw, ch);
+document.body.appendChild(renderer.domElement);
+
+const img = new Image();
+img.src = "./nums.png"; // 1〜6が横に並んだ画像
+await waitImageLoad(img);
+const texture = new THREE.Texture(img);
+texture.needsUpdate = true;
+
+// 画像が横6分割されてると仮定し、各面に対応したUVマッピング
+const materials = [];
+const dicemap = [0, 5, 1, 4, 2, 3];
+const off = dicemap.findIndex(i => i == roll - 1) + 2;
+for (let i = 0; i < 6; i++) {
+  const map = texture.clone();
+  const mat = new THREE.MeshBasicMaterial({ map });
+  mat.map.repeat.set(1 / 6, 1);
+  mat.map.offset.set(dicemap[(i + off) % 6] / 6, 0);
+  mat.map.wrapS = mat.map.wrapT = THREE.ClampToEdgeWrapping;
+  mat.map.needsUpdate = true;
+  materials.push(mat);
+}
+
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const cube = new THREE.Mesh(geometry, materials);
+scene.add(cube);
+
+console.log(roll);
+const dt = 2000; // 2sec
+const rnds = [];
+for (let i = 0; i < 4; i++) {
+  rnds[i] = 3 + rnd(4);
+}
+const stopt = performance.now() + dt;
+const animate = () => {
+  const t0 = stopt - performance.now();
+  const t = t0 < 0 ? 0 : t0;
+  cube.rotation.x = Math.pow(t / 1000, rnds[0]) * rnds[1];
+  cube.rotation.y = Math.pow(t / 1000, rnds[2]) * rnds[3];
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+}
+animate();
+
+// ウィンドウリサイズ対応
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="icon" href="data:">
+<title>input-dice</title>
+</head>
+<body>
+<h1>input-dice</h1>
+
+<style>
+body {
+  text-align: center;
+}
+input-dice {
+  width: 300px;
+  height: 300px;
+}
+</style>
+
+<script type="module" src="./input-dice.js"></script>
+
+<input-dice id=dice></input-dice><br>
+<button id=btn>roll</button> <button id=btn1>roll 1</button><br>
+<input id=inoutput>
+
+<script type="module">
+btn.onclick = () => dice.roll();
+btn1.onclick = () => dice.roll(1);
+dice.oninput = () => inoutput.value = dice.value;
+</script>
+
+<hr>
+<a href=https://github.com/code4fukui/input-dice/>src on GitHub</a><br>
+
+</body>
+</html>
