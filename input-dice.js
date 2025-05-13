@@ -24,6 +24,8 @@ export class InputDice extends HTMLElement {
     img.crossOrigin = "anonymous";
     img.src = "https://code4fukui.github.io/input-dice/nums.png";
     const texture = new THREE.Texture(img);
+    texture.magFilter = THREE.NearestFilter;
+    texture.minFilter = THREE.NearestFilter;
     texture.needsUpdate = true;
 
     // 画像が横6分割されてると仮定し、各面に対応したUVマッピング
