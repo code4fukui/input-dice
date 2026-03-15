@@ -1,5 +1,7 @@
 # input-dice
 
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
+
 A custom HTML element that displays a 3D dice with a random number.
 
 ## Demo
