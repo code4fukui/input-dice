@@ -7,7 +7,7 @@ Three.jsを利用した、依存関係のないWeb用3Dサイコロのカスタ�
 https://code4fukui.github.io/input-dice/
 
 
-![3Dサイコロが4の目で止まるアニメーションデモ](https://code4fukui.github.io/input-dice/input-dice.gif)
+![3Dサイコロが4の目で止まるアニメーションデモ](https://github.com/code4fukui/input-dice)
 
 
 ## 機能

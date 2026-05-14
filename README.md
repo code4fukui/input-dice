@@ -9,7 +9,7 @@ A zero-dependency, 3D dice custom HTML element for the web, powered by Three.js.
 https://code4fukui.github.io/input-dice/
 
 
-![Demo animation showing a 3D die rolling and landing on the number 4.](https://code4fukui.github.io/input-dice/input-dice.gif)
+![Demo animation showing a 3D die rolling and landing on the number 4.](https://github.com/code4fukui/input-dice)
 
 
 ## Features
